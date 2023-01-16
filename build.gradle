@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'cf.thdisstudio.ystmusicbot.Main'
+group 'cf.thdisstudio'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://m2.dv8tion.net/releases'
+    }
+    maven {
+        name = "henkelmax.public"
+        url = 'https://maven.maxhenkel.de/repository/public'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'net.dv8tion:JDA:5.0.0-beta.2'
+    implementation 'com.google.api-client:google-api-client:2.1.1'
+    implementation 'com.google.apis:google-api-services-youtube:v3-rev20221108-2.0.0'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.42.3'
+    implementation('com.google.guava:guava:31.1-jre')
+    implementation('com.google.http-client:google-http-client:1.40.1')
+    implementation platform('com.google.cloud:libraries-bom:20.6.0')
+    implementation 'com.google.cloud:google-cloud-storage:2.16.0'
+    implementation 'com.sedmelluq:lavaplayer:1.3.77'
+    implementation group: 'net.java.dev.jna', name: 'jna', version: '5.7.0'
+    implementation group: 'com.alphacephei', name: 'vosk', version: '0.3.45'
+    implementation 'org.json:json:20220924'
+
+    implementation files('lib/cmu_time_awb.jar')
+    implementation files('lib/cmu_us_kal.jar')
+    implementation files('lib/cmudict04.jar')
+    implementation files('lib/cmulex.jar')
+    implementation files('lib/cmutimelex.jar')
+    implementation files('lib/en_us.jar')
+    implementation files('lib/freetts.jar')
+    implementation files('lib/freetts-jsapi10.jar')
+    implementation files('lib/jsapi.jar')
+    implementation files('lib/mbrola.jar')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'cf.thdisstudio.ystmusicbot.Main'
+        )
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
